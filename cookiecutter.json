@@ -1,0 +1,20 @@
+{
+    "project_name": "Project Name",
+    "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+    "module_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "author": "Your name (or your organization/company/team)",
+    "github_user": "Your GitHub username",
+    "description": "A one line description of the project",
+    "include_cli": [
+        "y",
+        "n"
+    ],
+    "include_data": [
+        "y",
+        "n"
+    ],
+    "include_docs": [
+        "y",
+        "n"
+    ]
+}

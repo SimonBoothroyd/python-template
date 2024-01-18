@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "versioneer"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "{{cookiecutter.package_name}}"
+description = "{{cookiecutter.description}}"
+dynamic = ["version"]
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = ["Programming Language :: Python :: 3"]
+
+{% if cookiecutter.include_cli == "y" -%}
+[project.scripts]
+{{cookiecutter.package_name}} = "{{cookiecutter.module_name}}._cli:main"
+
+{% endif -%}
+[tool.setuptools]
+zip-safe = false
+{% if cookiecutter.include_data == "y" -%}include-package-data = true{% else %}include-package-data = false{% endif %}
+
+[tool.setuptools.dynamic]
+version = {attr = "{{cookiecutter.module_name}}.__version__"}
+
+[tool.setuptools.packages.find]
+namespaces = true
+where = ["."]
+
+{% if cookiecutter.include_data == "y" -%}
+[tool.setuptools.package-data]
+"{{cookiecutter.module_name}}" = ["data/**/*"]
+
+{% endif -%}
+
+[tool.versioneer]
+VCS = "git"
+style = "pep440"
+versionfile_source = "{{cookiecutter.module_name}}/_version.py"
+versionfile_build = "{{cookiecutter.module_name}}/_version.py"
+tag_prefix = ""
+parentdir_prefix = "{{cookiecutter.package_name}}-"
+
+[tool.ruff.lint]
+ignore = ["C901", "E501"]
+select = ["B","C","E","F","W","B9"]
+ignore-init-module-imports = true
+
+[tool.coverage.run]
+omit = ["**/tests/*", "**/_version.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "@overload",
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "if typing.TYPE_CHECKING:",
+]

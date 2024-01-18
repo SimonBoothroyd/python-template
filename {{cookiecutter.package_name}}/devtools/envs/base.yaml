@@ -1,0 +1,35 @@
+name: {{cookiecutter.package_name}}
+
+channels:
+  - conda-forge
+
+dependencies:
+
+  - python >=3.10
+  - pip
+
+  {% if cookiecutter.include_cli == "y" -%}
+  - click
+
+  {% endif -%}
+
+  # Dev / Testing
+  - versioneer
+
+  - pre-commit
+  - ruff
+
+  - pytest
+  - pytest-mock
+  - pytest-cov
+  - codecov
+
+  # Docs
+  - mkdocs
+  - mkdocs-material
+  - mkdocs-gen-files
+  - mkdocs-literate-nav
+  - mkdocstrings
+  - mkdocstrings-python
+  - black
+  - mike
