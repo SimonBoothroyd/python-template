@@ -23,6 +23,15 @@ cookiecutter gh:SimonBoothroyd/python-template
 
 and follow the instructions.
 
+Once created, a development conda environment can be created by running
+
+```shell
+make env
+conda activate {{ package_name }}
+```
+
+in the newly created project directory.
+
 ### GitHub Pages
 
 To enable automatic deployment of documentation to GitHub Pages, you will need to 
