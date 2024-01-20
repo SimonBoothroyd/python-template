@@ -16,5 +16,9 @@
     "include_docs": [
         "y",
         "n"
+    ],
+    "include_griffe_insiders": [
+        "n",
+        "y"
     ]
 }

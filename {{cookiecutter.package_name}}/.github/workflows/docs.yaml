@@ -44,4 +44,9 @@ jobs:
         git fetch --all --prune
 
         make env
+        {% if cookiecutter.include_griffe_insiders == "y" %}
+        sed -i 's/# extensions/extensions/' mkdocs.yml
+        make docs-insiders INSIDER_DOCS_TOKEN="${INSIDER_DOCS_TOKEN}"
+        
+        {% endif -%}
         make docs-deploy VERSION="$VERSION"
