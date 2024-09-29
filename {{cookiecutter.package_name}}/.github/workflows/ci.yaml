@@ -33,3 +33,4 @@ jobs:
       with:
         file: ./coverage.xml
         flags: unittests
+        {% if cookiecutter.private_repo == "y" %}token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}{% endif %}
