@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel", "versioneer"]
+requires = ["setuptools>=61.0", "setuptools_scm>=8", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -16,15 +16,10 @@ classifiers = ["Programming Language :: Python :: 3"]
 
 {% endif -%}
 [tool.setuptools]
-zip-safe = false
 {% if cookiecutter.include_data == "y" -%}include-package-data = true{% else %}include-package-data = false{% endif %}
 
-[tool.setuptools.dynamic]
-version = {attr = "{{cookiecutter.module_name}}.__version__"}
-
 [tool.setuptools.packages.find]
-namespaces = true
-where = ["."]
+include = ["{{cookiecutter.module_name}}*"]
 
 {% if cookiecutter.include_data == "y" -%}
 [tool.setuptools.package-data]
@@ -32,21 +27,15 @@ where = ["."]
 
 {% endif -%}
 
-[tool.versioneer]
-VCS = "git"
-style = "pep440"
-versionfile_source = "{{cookiecutter.module_name}}/_version.py"
-versionfile_build = "{{cookiecutter.module_name}}/_version.py"
-tag_prefix = ""
-parentdir_prefix = "{{cookiecutter.package_name}}-"
+[tool.setuptools_scm]
 
 [tool.ruff.lint]
-ignore = ["C901", "E501"]
+ignore = ["C901"]
 select = ["B","C","E","F","W","B9"]
 ignore-init-module-imports = true
 
 [tool.coverage.run]
-omit = ["**/tests/*", "**/_version.py"]
+omit = ["**/tests/*"]
 
 [tool.coverage.report]
 exclude_lines = [
