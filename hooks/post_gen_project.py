@@ -18,7 +18,6 @@ REPO_DESCR = "{{ cookiecutter.description }}"
 INCLUDE_DOCS = "{{ cookiecutter.include_docs }}" == "y"
 INCLUDE_DATA = "{{ cookiecutter.include_data }}" == "y"
 INCLUDE_CLI = "{{ cookiecutter.include_cli }}" == "y"
-INCLUDE_INSIDERS = "{{ cookiecutter.include_griffe_insiders }}" == "y"
 
 GH_TOKEN = os.environ.get("GITHUB_TOKEN")
 
@@ -199,8 +198,4 @@ if INCLUDE_DOCS:
     initialize_gh_pages()
     enable_gh_pages()
 
-if INCLUDE_INSIDERS:
-    log("You will need to manually create an action secret called `INSIDER_DOCS_TOKEN`")
-
-if IS_PRIVATE:
-    log("You will need to manually create an action secret called `CODECOV_TOKEN`")
+log("You will need to manually create an action secret called `CODECOV_TOKEN`")

@@ -30,6 +30,6 @@ dependencies:
   - mkdocs-gen-files
   - mkdocs-literate-nav
   - mkdocstrings
-  - mkdocstrings-python
+  - mkdocstrings-python >=1.10.8
   - black
   - mike

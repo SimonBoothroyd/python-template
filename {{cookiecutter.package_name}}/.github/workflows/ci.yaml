@@ -26,11 +26,11 @@ jobs:
         make lint
         make test
         
-        make docs-build
+        make docs
 
     - name: CodeCov
-      uses: codecov/codecov-action@v3.1.1
+      uses: codecov/codecov-action@v4.1.1
       with:
         file: ./coverage.xml
         flags: unittests
-        {% if cookiecutter.private_repo == "y" %}token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}{% endif %}
+        token: ${{ secrets.CODECOV_TOKEN }}
